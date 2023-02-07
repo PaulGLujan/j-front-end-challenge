@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { login } from "./auth.redux";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
+import { Heading } from "../../components/Heading";
 
 const Container = styled.div`
   display: flex;
@@ -15,12 +16,6 @@ const Container = styled.div`
 
 const FormContainer = styled.form`
   width: 400px;
-`;
-
-const Heading = styled.h1`
-  text-align: center;
-  margin-bottom: 24px;
-  font-family: "poppins-bold";
 `;
 
 export const Authentication = () => {

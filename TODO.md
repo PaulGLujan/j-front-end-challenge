@@ -3,3 +3,4 @@
 [ ] Implement SVGs
 [ ] Get the input to focus with yellow when typing
 [ ] Error message for sign in form
+[ ] Fix time span formatting on challenge cards
