@@ -1,0 +1,1 @@
+Why does the Input line turn yellow? Is it because it's not a valid email?

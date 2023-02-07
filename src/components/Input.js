@@ -23,7 +23,7 @@ const Error = styled.p`
 const StyledInput = styled.input`
   font-size: 14px;
   width: 100%;
-  padding: 8px 6px;
+  padding: 8px 0;
   border: none;
   border-bottom: 1px solid #3A4354;
 `;
