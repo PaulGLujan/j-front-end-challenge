@@ -1,5 +1,5 @@
 // Reference: https://styled-components.com/
-import React from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -19,13 +19,13 @@ const FormContainer = styled.form`
 `;
 
 export const Authentication = () => {
+  const [email, setEmail] = useState("testuser@joro.tech");
+  const [password, setPassword] = useState("mockUserPassword");
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const authenticate = () => {
-    // Remove this once input fields added to collected login credentials
-    const email = "";
-    const password = "";
+  const authenticate = (e) => {
+    e.preventDefault();
     dispatch(login(email, password, onSuccessAction, onFailureAction));
   };
 
@@ -43,8 +43,18 @@ export const Authentication = () => {
     <Container>
       <Heading>Sign In</Heading>
       <FormContainer>
-        <Input type="TEXT" placeholder="Email" />
-        <Input type="PASSWORD" placeholder="Password" />
+        <Input
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
+          type="TEXT"
+          value={email}
+        />
+        <Input
+          type="PASSWORD"
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+          value={password}
+        />
         <Button onClick={authenticate} component={Link}>
           Sign In
         </Button>
