@@ -1,5 +1,8 @@
+import { useEffect } from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { fetchChallenges } from "./challenges.redux";
 import { ChallengeCard } from "../../components/ChallengeCard";
 import { Heading } from "../../components/Heading";
 
@@ -30,15 +33,25 @@ const challenge = {
 };
 
 export const Challenges = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchChallenges());
+  }, []);
+
   const firstName = useSelector((state) => state.auth.user.firstName);
+  const challenges = useSelector(
+    (state) => state.challenges?.challenges ?? false
+  );
 
   return (
     <Container>
       <ModHeading>Hi {firstName}</ModHeading>
       <SubHeading>Take a challenge to earn trees.</SubHeading>
       <ChallengesRow>
-        <ChallengeCard challenge={challenge} />
-        <ChallengeCard challenge={challenge} />
+        {challenges &&
+          challenges.map((challenge) => (
+            <ChallengeCard challenge={challenge} key={challenge.contentKey} />
+          ))}
       </ChallengesRow>
     </Container>
   );
