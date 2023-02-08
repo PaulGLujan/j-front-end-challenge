@@ -1,11 +1,9 @@
-import { useEffect } from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { fetchChallenges } from "./challenges.redux";
 import { ChallengeCard } from "../../components/ChallengeCard";
 import { Heading } from "../../components/Heading";
 import { Loading } from "../../components/Loading";
+import { useChallengesData } from "./challenges.redux";
 
 const Container = styled.div`
   width: 400px;
@@ -25,23 +23,9 @@ const SubHeading = styled.h2`
   font-family: "poppins-bold";
 `;
 
-const challenge = {
-  id: 1,
-  name: "Vegan for a Week",
-  contentKey: "vegan-week",
-  timePeriod: "week",
-  category: "food",
-};
-
 export const Challenges = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchChallenges());
-  }, []);
-
   const firstName = useSelector((state) => state.auth.user.firstName);
-  const challenges = useSelector((state) => state.challenges?.challenges);
+  const challenges = useChallengesData();
 
   if (!challenges) {
     return <Loading />;
