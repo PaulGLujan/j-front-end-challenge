@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 import { ChallengeCard } from "../../components/ChallengeCard";
 import { Heading } from "../../components/Heading";
 
@@ -29,9 +30,11 @@ const challenge = {
 };
 
 export const Challenges = () => {
+  const firstName = useSelector((state) => state.auth.user.firstName);
+
   return (
     <Container>
-      <ModHeading>Hi [first Name]</ModHeading>
+      <ModHeading>Hi {firstName}</ModHeading>
       <SubHeading>Take a challenge to earn trees.</SubHeading>
       <ChallengesRow>
         <ChallengeCard challenge={challenge} />
