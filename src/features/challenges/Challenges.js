@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { fetchChallenges } from "./challenges.redux";
 import { ChallengeCard } from "../../components/ChallengeCard";
 import { Heading } from "../../components/Heading";
+import { Loading } from "../../components/Loading";
 
 const Container = styled.div`
   width: 400px;
@@ -34,14 +35,17 @@ const challenge = {
 
 export const Challenges = () => {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(fetchChallenges());
   }, []);
 
   const firstName = useSelector((state) => state.auth.user.firstName);
-  const challenges = useSelector(
-    (state) => state.challenges?.challenges ?? false
-  );
+  const challenges = useSelector((state) => state.challenges?.challenges);
+
+  if (!challenges) {
+    return <Loading />;
+  }
 
   return (
     <Container>
