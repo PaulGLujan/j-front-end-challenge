@@ -21,7 +21,8 @@ export const joinChallenge = (challengeId) =>
   });
 
 export const initialState = {
-  challenges: null
+  challenges: null,
+  userChallenge: null,
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
@@ -30,8 +31,13 @@ export default (state = initialState, action) => {
     case FETCH_CHALLENGES.success:
       return {
         ...state,
-        challenges: action.payload.challenges
-      }
+        challenges: action.payload.challenges,
+      };
+    case JOIN_CHALLENGE.success:
+      return {
+        ...state,
+        userChallenge: { ...action.payload.userChallenge },
+      };
     default:
       return state;
   }
@@ -46,8 +52,11 @@ export const useChallengesData = () => {
     if (!challenges) {
       dispatch(fetchChallenges());
     }
-  }, [challenges, dispatch])
+  }, [challenges, dispatch]);
 
   return challenges;
-}
+};
 
+export const useUserChallengeData = () => {
+  return useSelector((s) => s.challenges.userChallenge);
+};

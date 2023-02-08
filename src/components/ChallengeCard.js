@@ -1,7 +1,10 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import Svg from "react-inlinesvg";
 import moment from "moment";
+import { joinChallenge, useUserChallengeData } from "../features/challenges/challenges.redux";
+import { Button as DefaultButton } from './Button';
 
 import { CHALLENGE_ICONS } from "../constants/challenges";
 
@@ -36,22 +39,25 @@ const DateRange = styled.p`
   font-family: 'source-sans-regular';
 `;
 
-const Button = styled.button`
-  border: none;
-  color: white;
-  font-weight: bold;
-  text-align: center;
-  height: 32px;
+const Button = styled(DefaultButton)`
   width: 120px;
-  background-color: #252B36;
   align-self: center;
-  font-family: 'poppins-bold';
   position: absolute;
   bottom: 0;
   margin-bottom: 16px;
 `;
 
 export const ChallengeCard = ({ challenge }) => {
+  const [loading, setLoading] = useState(false);
+  const userChallengeData = useUserChallengeData();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (userChallengeData?.challengeId) {
+      setLoading(false);
+    }
+  }, [userChallengeData]);
+
   const DISPLAY_DATE_FORMAT = "MMMM D, YYYY";
 
   const iconSrc = CHALLENGE_ICONS[challenge.contentKey];
@@ -59,7 +65,18 @@ export const ChallengeCard = ({ challenge }) => {
   const endDate = moment().endOf(challenge.timePeriod).format(DISPLAY_DATE_FORMAT);
 
   const join = async () => {
-    // TODO: implement
+    setLoading(true);
+    dispatch(joinChallenge(challenge.id));
+  };
+
+  const renderButton = () => {
+    if (userChallengeData?.challengeId === challenge.id) {
+      return <Button success>Check</Button>;
+    } else if (loading) {
+      return <Button $loading>Loading</Button>;
+    } else {
+      return <Button onClick={join}>Join</Button>;
+    }
   };
 
   return (
@@ -67,7 +84,7 @@ export const ChallengeCard = ({ challenge }) => {
       <Logo src={iconSrc} />
       <Title>{challenge.name}</Title>
       <DateRange>{startDate} - {endDate}</DateRange>
-      <Button onPress={join}>JOIN</Button>
+      {renderButton()}
     </Container>
   )
 }
