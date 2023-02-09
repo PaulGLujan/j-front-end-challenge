@@ -11,7 +11,6 @@ import { CHALLENGE_ICONS } from "../constants/challenges";
 const Container = styled.div`
   width: 155px;
   height: 282px;
-  margin-right: 24px;
   margin-bottom: 16px;
   background-color: white;
   padding: 16px;

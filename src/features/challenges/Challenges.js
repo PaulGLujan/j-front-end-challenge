@@ -1,18 +1,35 @@
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import { useSelector } from "react-redux";
 import { ChallengeCard } from "../../components/ChallengeCard";
 import { Heading } from "../../components/Heading";
 import { Loading } from "../../components/Loading";
 import { useChallengesData } from "./challenges.redux";
 
+const BodyStyle = createGlobalStyle`
+  body {
+    background-color: #F8F8F8;
+  }
+`;
+
 const Container = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 20px;
+  position: relative;
+  bottom: 10vh;
+`;
+
+const HeadingContainer = styled.div`
   width: 400px;
   margin: 0 auto;
 `;
 
 const ChallengesRow = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  column-gap: 30px;
 `;
 
 const ModHeading = styled(Heading)`
@@ -33,8 +50,12 @@ export const Challenges = () => {
 
   return (
     <Container>
-      <ModHeading>Hi {firstName}</ModHeading>
-      <SubHeading>Take a challenge to earn trees.</SubHeading>
+      <BodyStyle />
+      <HeadingContainer>
+        <ModHeading>Hi {firstName}</ModHeading>
+        <SubHeading>Take a challenge to earn trees.</SubHeading>
+      </HeadingContainer>
+
       <ChallengesRow>
         {challenges &&
           challenges.map((challenge) => (
