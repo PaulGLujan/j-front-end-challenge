@@ -15,6 +15,10 @@ I used the svg library that was mentioned in the code, "react-inlinesvg". I woul
 
 I enjoyed working on this well organized take home assignment. I appreciate that I was able to reuse a lot of the existing code.
 
+I have a couple suggestions for improving the repo:
+* Add an .nvmrc file with a node version of v16.19.0. The app was not compiling with later node versions
+* Update React Scripts. It was creating an iframe overlay before. I updated to "react-scripts": "^5.0.1"
+
 Thank you in advance for your support and assistance. I look forward to hearing from you.
 
 Regards,
