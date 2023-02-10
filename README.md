@@ -1,3 +1,25 @@
+# Notes for Reviewer
+
+Hi Nick,
+
+I hope all is going well with you. I'm writing this note to request feedback on this take-home assignment. I was only able to set aside a week to work on this assignment due to other responsibilites. Despite the time constraint, I did my best to complete the assignment to the best of my abilities and look forward to your feedback. Your expertise and experience will be invaluable to me, and I believe that your suggestions and recommendations will help me improve my skills and grow professionally. Below I have outlined what I completed.
+
+I completed all of the required features and (2) of the optional features: disable ability to navigate to /challenge route when signed out, and dislay "loading" state when attempting to join challenge. Given more time, I am confident that I could complete the rest of the optional challenges.
+
+I wrote a few unit tests although more would be needed to complete testing: 
+
+1. The challenge page needs a test around joining challenges. 
+2. An integration test is also needed.
+
+I used the svg library that was mentioned in the code, "react-inlinesvg". I would refactor this to use the more performant "react-svg". React-svg is more lightweight, has improved parsing performance, and has some caching advantages. With more time I would be able to make that change.
+
+I enjoyed working on this well organized take home assignment. I appreciate that I was able to reuse a lot of the existing code.
+
+Thank you in advance for your support and assistance. I look forward to hearing from you.
+
+Regards,
+Paul
+
 # Joro Front-End Coding Challenge
 
 This app is a low fidelity version of the Joro app. In order to reduce setup work, this is a web app that demonstrates some of the same functionality as the mobile app i.e. ability to login, view challenges, and join a challenge.
