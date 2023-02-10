@@ -21,9 +21,21 @@ const FormContainer = styled.form`
   width: 400px;
 `;
 
+const ErrorBox = styled.div`
+  box-sizing: border-box;
+  background-color: #cc0000;
+  font-family: "source-sans-regular";
+  color: #ffffff;
+  max-width: 400px;
+  width: 100%;
+  padding: 16px 20px;
+  margin-top: 20px;
+`;
+
 export const Authentication = () => {
   const [email, setEmail] = useState("testuser@joro.tech");
   const [password, setPassword] = useState("mockUserPassword");
+  const [hasError, setHasError] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -40,6 +52,7 @@ export const Authentication = () => {
 
   const onFailureAction = () => {
     console.log("[LOGIN] failed");
+    setHasError(true);
   };
 
   return (
@@ -62,6 +75,11 @@ export const Authentication = () => {
         <Button onClick={authenticate} component={Link}>
           Sign In
         </Button>
+        {hasError && (
+          <ErrorBox>
+            We're sorry but something went wrong. Please try again.
+          </ErrorBox>
+        )}
       </FormContainer>
     </Center>
   );
