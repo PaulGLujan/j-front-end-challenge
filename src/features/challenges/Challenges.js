@@ -4,6 +4,7 @@ import { ChallengeCard } from "../../components/ChallengeCard";
 import { Heading as BaseHeading } from "../../components/Heading";
 import { Loading } from "../../components/Loading";
 import { useChallengesData } from "./challenges.redux";
+import { Center } from "../../components/Center";
 
 const BodyStyle = createGlobalStyle`
   body {
@@ -11,19 +12,8 @@ const BodyStyle = createGlobalStyle`
   }
 `;
 
-const Container = styled.div`
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-bottom: 20px;
-  position: relative;
-  bottom: 10vh;
-`;
-
 const HeadingContainer = styled.div`
   width: 400px;
-  margin: 0 auto;
 `;
 
 const ChallengesRow = styled.div`
@@ -49,7 +39,7 @@ export const Challenges = () => {
   }
 
   return (
-    <Container>
+    <Center>
       <BodyStyle />
       <HeadingContainer>
         <Heading>Hi {firstName ?? "you!"}</Heading>
@@ -62,6 +52,6 @@ export const Challenges = () => {
             <ChallengeCard challenge={challenge} key={challenge.contentKey} />
           ))}
       </ChallengesRow>
-    </Container>
+    </Center>
   );
 };

@@ -1,17 +1,20 @@
 // Reference: https://styled-components.com/
 import { useState } from "react";
 import styled from "styled-components";
+import Svg from "react-inlinesvg";
 import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import JoroLogo from "../../assets/svg/Joro Logo.svg";
 import { login } from "./auth.redux";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { Heading } from "../../components/Heading";
+import { Center } from "../../components/Center";
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+const Logo = styled(Svg)`
+  height: 30px;
+  position: relative;
+  bottom: 10vh;
 `;
 
 const FormContainer = styled.form`
@@ -40,7 +43,8 @@ export const Authentication = () => {
   };
 
   return (
-    <Container>
+    <Center>
+      <Logo src={JoroLogo} />
       <Heading>Sign In</Heading>
       <FormContainer>
         <Input
@@ -59,6 +63,6 @@ export const Authentication = () => {
           Sign In
         </Button>
       </FormContainer>
-    </Container>
+    </Center>
   );
 };
