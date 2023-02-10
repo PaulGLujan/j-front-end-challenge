@@ -33,8 +33,8 @@ const ErrorBox = styled.div`
 `;
 
 export const Authentication = () => {
-  const [email, setEmail] = useState("testuser@joro.tech");
-  const [password, setPassword] = useState("mockUserPassword");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [hasError, setHasError] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
