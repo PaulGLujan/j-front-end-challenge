@@ -1,10 +1,10 @@
-import { render } from "../../../utility/testRender"
-import { Authentication } from "../../../features/auth/Authentication"
+import { screen } from "@testing-library/react";
+import { render } from "../../../utility/testRender";
+import { Authentication } from "../../../features/auth/Authentication";
 
 describe("Authentication page", () => {
-
   it("renders", async () => {
-    const { getByText  } = render(<Authentication />);
-    expect(getByText("LOGIN")).toBeInTheDocument();
+    render(<Authentication />);
+    expect(screen.getByRole("heading")).toHaveTextContent("Sign In");
   });
 });

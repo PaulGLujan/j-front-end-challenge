@@ -1,7 +1,7 @@
 import styled, { createGlobalStyle } from "styled-components";
 import { useSelector } from "react-redux";
 import { ChallengeCard } from "../../components/ChallengeCard";
-import { Heading } from "../../components/Heading";
+import { Heading as BaseHeading } from "../../components/Heading";
 import { Loading } from "../../components/Loading";
 import { useChallengesData } from "./challenges.redux";
 
@@ -32,7 +32,7 @@ const ChallengesRow = styled.div`
   column-gap: 30px;
 `;
 
-const ModHeading = styled(Heading)`
+const Heading = styled(BaseHeading)`
   margin-bottom: 80px;
 `;
 
@@ -52,7 +52,7 @@ export const Challenges = () => {
     <Container>
       <BodyStyle />
       <HeadingContainer>
-        <ModHeading>Hi {firstName}</ModHeading>
+        <Heading>Hi {firstName ?? "you!"}</Heading>
         <SubHeading>Take a challenge to earn trees.</SubHeading>
       </HeadingContainer>
 
