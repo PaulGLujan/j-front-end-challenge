@@ -4,7 +4,12 @@ import { PersistGate } from "redux-persist/integration/react";
 
 import { Authentication } from "./features/auth/Authentication";
 import { configureStore } from "./store/Store";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Redirect,
+  Route,
+} from "react-router-dom";
 import { Challenges } from "./features/challenges/Challenges";
 
 const { store, persistor } = configureStore();
@@ -16,9 +21,9 @@ export default class App extends React.Component {
         <PersistGate loading={null} persistor={persistor}>
           <Router>
             <Switch>
-              <Route path="/challenges">
+              <PrivateRoute path="/challenges">
                 <Challenges />
-              </Route>
+              </PrivateRoute>
               <Route path="">
                 <Authentication />
               </Route>
@@ -28,4 +33,25 @@ export default class App extends React.Component {
       </Provider>
     );
   }
+}
+
+function PrivateRoute({ children, ...rest }) {
+  const isLoggedIn = store.getState().auth.loggedIn;
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        isLoggedIn ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/",
+              state: { from: location },
+            }}
+          />
+        )
+      }
+    />
+  );
 }
