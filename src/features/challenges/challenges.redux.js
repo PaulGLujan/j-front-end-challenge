@@ -4,6 +4,7 @@ import { apiTypeBuilder, callApi } from "../../utility/api";
 
 const FETCH_CHALLENGES = apiTypeBuilder("FETCH_CHALLENGES");
 const JOIN_CHALLENGE = apiTypeBuilder("JOIN_CHALLENGE");
+export const UNJOIN_ALL = "UNJOIN_ALL";
 
 export const fetchChallenges = () =>
   callApi({
@@ -38,6 +39,12 @@ export default (state = initialState, action) => {
         ...state,
         userChallenge: { ...action.payload.userChallenge },
       };
+    case UNJOIN_ALL: {
+      return {
+        ...state,
+        userChallenge: null
+      }
+    };
     default:
       return state;
   }

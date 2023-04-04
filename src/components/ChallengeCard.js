@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import Svg from "react-inlinesvg";
 import moment from "moment";
-import { joinChallenge, useUserChallengeData } from "../features/challenges/challenges.redux";
+import { joinChallenge, useUserChallengeData, UNJOIN_ALL } from "../features/challenges/challenges.redux";
 import { Button as DefaultButton } from './Button';
 
 import { CHALLENGE_ICONS } from "../constants/challenges";
@@ -46,6 +46,11 @@ const Button = styled(DefaultButton)`
   margin-bottom: 16px;
 `;
 
+const DisabledButton = styled(Button)`
+  cursor: not-allowed;
+  background-color: #676977;
+`;
+
 export const ChallengeCard = ({ challenge }) => {
   const [loading, setLoading] = useState(false);
   const userChallengeData = useUserChallengeData();
@@ -68,13 +73,19 @@ export const ChallengeCard = ({ challenge }) => {
     dispatch(joinChallenge(challenge.id));
   };
 
+  const unjoin = () => {
+    dispatch({ type: UNJOIN_ALL});
+  };
+
   const renderButton = () => {
     if (userChallengeData?.challengeId === challenge.id) {
-      return <Button success>Check</Button>;
+      return <Button success onClick={unjoin}>Unjoin</Button>;
     } else if (loading) {
       return <Button $loading>Loading</Button>;
-    } else {
+    } else if (userChallengeData === null) {
       return <Button onClick={join}>Join</Button>;
+    } else if (userChallengeData !== challenge.id) {
+      return <DisabledButton disabled>Join</DisabledButton>
     }
   };
 

@@ -33,8 +33,8 @@ const ErrorBox = styled.div`
 `;
 
 export const Authentication = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("testuser@joro.tech");
+  const [password, setPassword] = useState("mockUserPassword");
   const [hasError, setHasError] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -65,12 +65,14 @@ export const Authentication = () => {
           placeholder="Email"
           type="TEXT"
           value={email}
+          data-testid="username"
         />
         <Input
           type="PASSWORD"
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
           value={password}
+          data-testid="password"
         />
         <Button onClick={authenticate} component={Link}>
           Sign In

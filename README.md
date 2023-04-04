@@ -4,7 +4,7 @@ Hi Nick,
 
 I hope all is going well with you. I'm writing this note to request feedback on this take-home assignment. I was only able to set aside a week to work on this assignment due to other responsibilites. Despite the time constraint, I did my best to complete the assignment to the best of my abilities and look forward to your feedback. Your expertise and experience will be invaluable to me, and I believe that your suggestions and recommendations will help me improve my skills and grow professionally. Below I have outlined what I completed.
 
-I completed all of the required features and (2) of the optional features: disable ability to navigate to /challenge route when signed out, and dislay "loading" state when attempting to join challenge. Given more time, I am confident that I could complete the rest of the optional challenges.
+I completed all of the required features and (2) of the optional features: disable ability to navigate to /challenge route when signed out, and display "loading" state when attempting to join challenge. Given more time, I am confident that I could complete the rest of the optional challenges.
 
 I wrote a few unit tests although more would be needed to complete testing: 
 

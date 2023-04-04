@@ -41,6 +41,7 @@ export const Input = ({
   hasError = false,
   autoFocus = false,
   type = INPUT_TYPES.TEXT,
+  ...rest
 }) => {
   return (
     <Container>
@@ -52,6 +53,7 @@ export const Input = ({
         disabled={disabled}
         error={error}
         autoFocus={autoFocus}
+        {...rest}
       />
       {hasError && <Error>{error}</Error>}
     </Container>
